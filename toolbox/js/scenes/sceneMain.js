@@ -10,36 +10,25 @@ class SceneMain extends Phaser.Scene {
         this.load.audio('cat', ['audio/meow.mp3', 'audio/meow.ogg']);
         this.load.audio('background', ['audio/Viktor Kraus - Victory!.mp3']);
 
-        this.load.image('toggle1', 'images/ui/toggles/1.png');
-        this.load.image('musicOff', 'images/ui/icons/music_off.png');
-        this.load.image('musicOn', 'images/ui/icons/music_on.png');
-        this.load.image('sfxOff', 'images/ui/icons/sfx_off.png');
-        this.load.image('sfxOn', 'images/ui/icons/sfx_on.png');
+        this.load.image('toggle1', 'images/ui/ui/toggles/1.png');
+        this.load.image('musicOff', 'images/ui/ui/icons/music_off.png');
+        this.load.image('musicOn', 'images/ui/ui/icons/music_on.png');
+        this.load.image('sfxOff', 'images/ui/ui/icons/sfx_off.png');
+        this.load.image('sfxOn', 'images/ui/ui/icons/sfx_on.png');
     }
     create() {
 
         emitter = new Phaser.Events.EventEmitter();
         controller = new Controller(); 
-        var mediaManager = new MediaManager({scene:this})
-        mediaManager.setBackgroundMusic('background');
-        var gridConfig = {rows:5, cols:5, scene:this};
-        var grid = new AlignGrid(gridConfig);
-        grid.showNumbers();
+        var mediaManager = new MediaManager({scene:this});
 
-        var fireText = {color:'red', fontSize:20};
-        var button1 = new FlatButton({scene:this, key: 'button1', text: 'Fire!', x:240,y:100, event:'button_pressed', params:'fire_lasers', textConfig:fireText});
-        var button2 = new FlatButton({scene:this, key: 'button2', text: 'Destruct!',x:240, y:300, event:'button_pressed', params:'self_destruct'});
-        var toggleButton = new ToggleButton({scene:this, backKey:'toggle1', onIcon: 'musicOn', offIcon: "musicOff", event: G.TOGGLE_MUSIC, x: 240, y:450});
-        //this.button = this.add.sprite(0,0,'face');
-        emitter.on('button_pressed', this.buttonPressed, this);
-        //grid.placeAtIndex(7, this.face);
+        var sb = new SoundButtons({scene:this});
+
+        var bar = new Bar({scene:this, x:240, y:320});
+        bar.setPercent(0.5);
 
     }
-    buttonPressed(params) {
-        console.log(params)
-        emitter.emit(G.PLAY_SOUND, 'cat')
-        //model.musicOn = !model.musicOn;
-        //this.scene.start('SceneOver');
-    }    
-    update() {}
+    update() {
+
+    }
 }

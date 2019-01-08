@@ -4,17 +4,12 @@ class SceneMain extends Phaser.Scene {
     }
     preload()
     {
-        this.load.image('road', 'images/road.jpg');
-        this.load.spritesheet('cars', 'images/cars.png',{frameWidth: 60, frameHeight: 126});
-        this.load.image('pcar1', 'images/pcar1.png');
-        this.load.image('pcar2', 'images/pcar2.png');
-        this.load.image('barrier', 'images/barrier.png');
-        this.load.image('cone', 'images/cone.png');
-        this.load.image('line', 'images/line.png');
+
     }
     create() {
         emitter = new Phaser.Events.EventEmitter();
         controller = new Controller(); 
+        model.gameOver=false;
 
         this.sb = new Scorebox({scene: this});
         
@@ -24,9 +19,11 @@ class SceneMain extends Phaser.Scene {
         this.road.makeLines();
 
         this.alignGrid = new AlignGrid({cols:5, rows:5, scene:this});
-        this.alignGrid.showNumbers();
+       // this.alignGrid.showNumbers();
+        this.alignGrid.placeAtIndex(4 , this.sb);
 
-        this.alignGrid.placeAtIndex(4 , this.sb)
+        var soundButtons = new SoundButtons({scene:this});
+        var mediaManager = new MediaManager({scene:this});
         console.log("Ready!");
     }
     update() {
