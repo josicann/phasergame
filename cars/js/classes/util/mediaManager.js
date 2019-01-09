@@ -1,9 +1,8 @@
 class MediaManager {
     constructor(config) {
         this.scene = config.scene;
-        emitter.on(G.PLAY_SOUND, this.playSound, this);
-        emitter.on(G.MUSIC_CHANGED, this.musicChanged, this);
-
+        emitter.addListener(G.PLAY_SOUND, this.playSound, this);
+        emitter.addListener(G.MUSIC_CHANGED, this.musicChanged, this);
     }
     playSound(key) {
         if(model.soundOn) {

@@ -81,6 +81,7 @@ class Road extends Phaser.GameObjects.Container {
     }
 
     goSceneOver(){
+        this.scene.stop(this.scene);
         this.scene.start('SceneOver');
     }
     moveObjects() {
@@ -88,7 +89,7 @@ class Road extends Phaser.GameObjects.Container {
             return;
         }
         
-        this.object.y+= this.vSpace/this.object.speed;
+        this.object.y+= (this.vSpace/this.object.speed)*model.speed;
 
         if(Collision.checkCollide(this.car, this.object)){
             model.gameOver = true;
@@ -103,6 +104,7 @@ class Road extends Phaser.GameObjects.Container {
         if(this.object.y > game.config.height) {
             this.object.destroy();
             this.addObject();
+            model.score+=1;
         }
     }
 }
