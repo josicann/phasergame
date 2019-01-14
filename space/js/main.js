@@ -3,7 +3,6 @@ var model;
 var emitter;
 var G;
 var controller;
-var mediaManager;
 
 window.onload = function(){
 
@@ -18,7 +17,13 @@ window.onload = function(){
             width: 480,
             height: 640,
             parent: 'phaser-game',
-            scene: [SceneLoad, SceneTitle, SceneMain, SceneOver]
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    debug: true
+                }
+            },
+            scene: [SceneLoad, SceneMain, SceneTitle, SceneOver]
         };
     }else {
         var config = {
@@ -26,7 +31,13 @@ window.onload = function(){
             width: window.innerWidth,
             height: window.innerHeight,
             parent: 'phaser-game',
-            scene: [SceneLoad, SceneTitle, SceneMain, SceneOver]
+            physics: {
+                default: 'arcade',
+                arcade: {
+                    debug: true
+                }
+            },
+            scene: [SceneLoad, SceneMain,SceneTitle,SceneOver]
         };
     
     }

@@ -7,8 +7,9 @@ class SceneMain extends Phaser.Scene {
 
     }
     create() {
-        // emitter = new Phaser.Events.EventEmitter();
-        // controller = new Controller(); 
+        emitter = new Phaser.Events.EventEmitter();
+        controller = new Controller(); 
+        //mediaManager = new MediaManager({scene:this});        
 
 
         model.gameOver=false;
@@ -31,23 +32,23 @@ class SceneMain extends Phaser.Scene {
         //this.alignGrid.placeAtIndex(6 , this.sb);
 
         var soundButtons = new SoundButtons({scene:this});
-      // emitter.on(G.SCORE_UPDATED, this.scoreUpdated, this);
+      emitter.on(G.SCORE_UPDATED, this.scoreUpdated, this);
       model.score=0;
       model.speed=1;
 
         console.log("Ready!");
     }
 
-    // scoreUpdated(){
-    //     if(model.score/5 == Math.floor(model.score/5)){
-    //         model.speed+= 0.25;
-    //         if(model.speed > 1.5){
-    //             model.speed = 1.5;
-    //         }
+    scoreUpdated(){
+        if(model.score/5 == Math.floor(model.score/5)){
+            model.speed+= 0.25;
+            if(model.speed > 1.5){
+                model.speed = 1.5;
+            }
 
 
-    //     }
-    // }
+        }
+    }
     update() {
         this.road.moveLines();
         this.road.moveObjects();

@@ -1,18 +1,18 @@
-class SceneOver extends Phaser.Scene {
+class SceneTitle extends Phaser.Scene {
     constructor() {
-        super('SceneOver');
+        super('SceneTitle');
     }
     preload()
     {
-        this.load.image('title', 'images/title.png');
-        this.load.image('button', 'images/ui/buttons/2/1.png');
+
+        
     }
     create() {
 
-
+        emitter = new Phaser.Events.EventEmitter();
+        controller = new Controller(); 
         var grid = new AlignGrid({rows:11, cols: 11, scene:this});
-        //grid.showNumbers();
-        this.backGroundImgage = this.add.image(game.config.width/2, game.config.height/2, 'background');
+        grid.showNumbers();
 
         this.title = this.add.image(0,0, 'title');
 
@@ -21,12 +21,13 @@ class SceneOver extends Phaser.Scene {
 
         Align.scaleToGameW(this.title, 0.8);
 
-        var startBtn = new FlatButton({scene:this, key:'button', text:'Play Again', event: 'start_game'});
+        var startBtn = new FlatButton({scene:this, key:'button', text:'start', event: 'start_game'});
 
         grid.placeAtIndex(93, startBtn);
         //Align.scaleToGameW(startBtn, 0.2);
         emitter.on('start_game',this.startGame, this);
-        console.log("SceneOver");
+        console.log("SceneTitle");
+        this.scene.start('SceneMain');
     }
 
     startGame() {

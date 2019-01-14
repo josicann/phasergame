@@ -48,7 +48,8 @@ class Road extends Phaser.GameObjects.Container {
         if(model.gameOver) {
             return;
         }
-        emitter.emit(G.PLAY_SOUND, 'whoosh');
+        mediaManager.playSound('whoosh');
+       // emitter.emit(G.PLAY_SOUND, 'whoosh');
         this.car.x = -this.car.x;
     }
     makeLines() {
@@ -93,7 +94,8 @@ class Road extends Phaser.GameObjects.Container {
 
         if(Collision.checkCollide(this.car, this.object)){
             model.gameOver = true;
-            emitter.emit(G.PLAY_SOUND, 'boom');
+            mediaManager.playSound('boom');
+            //emitter.emit(G.PLAY_SOUND, 'boom');
            // this.car.alpha = 0.5;
            this.scene.tweens.add({targets:this.car, duration: 1000, y:game.config.height, angle: -270});
            this.scene.time.addEvent({ delay: 2000, callback: this.goSceneOver, callbackScope: this.scene, loop: false });

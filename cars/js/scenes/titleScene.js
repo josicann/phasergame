@@ -8,7 +8,8 @@ class SceneTitle extends Phaser.Scene {
     }
     create() {
 
-
+        emitter = new Phaser.Events.EventEmitter();
+        controller = new Controller(); 
         var grid = new AlignGrid({rows:11, cols: 11, scene:this});
         grid.showNumbers();
 
@@ -25,7 +26,7 @@ class SceneTitle extends Phaser.Scene {
         grid.placeAtIndex(93, startBtn);
         //Align.scaleToGameW(startBtn, 0.2);
         emitter.on('start_game',this.startGame, this);
-        var mediaManager = new MediaManager({scene:this});        
+        mediaManager = new MediaManager({scene:this});        
         mediaManager.setBackgroundMusic('backgroundMusic');
     }
 
