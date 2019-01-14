@@ -20,7 +20,7 @@ window.onload = function(){
             physics: {
                 default: 'arcade',
                 arcade: {
-                    debug: true
+                    debug:false
                 }
             },
             scene: [SceneLoad, SceneMain, SceneTitle, SceneOver]
@@ -34,7 +34,7 @@ window.onload = function(){
             physics: {
                 default: 'arcade',
                 arcade: {
-                    debug: true
+                    debug: false
                 }
             },
             scene: [SceneLoad, SceneMain,SceneTitle,SceneOver]

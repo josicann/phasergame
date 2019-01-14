@@ -30,6 +30,12 @@ class SceneLoad extends Phaser.Scene {
         this.load.spritesheet('explosion', 'images/exp.png', {frameWidth: 64, frameHeight: 64});
         this.load.image('eship', 'images/eship.png');
         this.load.image('ebullet', 'images/ebullet.png');
+        this.load.audio('enemyShoot', ['audio/enemyShoot.ogg','audio/enemyShoot.wav']);
+        this.load.audio('explosion', ['audio/explode.ogg','audio/explode.wav']);
+        this.load.audio('laser', ['audio/laser.ogg','audio/laser.wav']);
+        this.load.audio('background', ['audio/background.mp3','audio/background.ogg']);
+
+
 
 
 
@@ -40,6 +46,15 @@ class SceneLoad extends Phaser.Scene {
         this.progText.setText(Math.floor(per)+"%");
     }
     create(){
+        var frameNames = this.anims.generateFrameNumbers('explosion');
+        var f2 = frameNames.slice().reverse().concat(frameNames);
+        this.anims.create({
+            key: 'boom',
+            frames: f2,
+            frameRate: 48,
+            repeat: false
+        });
+
         this.scene.start('SceneTitle');
     }
 

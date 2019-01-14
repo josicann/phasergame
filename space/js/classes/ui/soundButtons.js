@@ -20,5 +20,9 @@ class SoundButtons {
             this.sfxButton.toggle();
         }
 
+        this.musicButton.setNoScroll();
+        this.sfxButton.setNoScroll();
+
+
     }
 }
